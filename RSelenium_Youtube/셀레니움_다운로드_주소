@@ -1,3 +1,6 @@
 https://github.com/mozilla/geckodriver/releases/tag/v0.17.0
 https://sites.google.com/a/chromium.org/chromedriver/
 https://www.seleniumhq.org/download/
+
+#CMD 
+java -Dwebdriver.gecko.driver="geckodriver.exe" -jar selenium-server-standalone-3.141.59.jar -port 4445
