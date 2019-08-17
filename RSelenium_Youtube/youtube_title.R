@@ -4,7 +4,7 @@ library(httr)
 library(rvest)
 library(RSelenium)
 
-remD <- remoteDriver(port = 1234L, # 포트번호 입력 
+remD <- remoteDriver(port = 4445L, # 포트번호 입력 
                      browserName = "chrome") #사용할 브라우저 
 
 remD$open() #서버에 연결
