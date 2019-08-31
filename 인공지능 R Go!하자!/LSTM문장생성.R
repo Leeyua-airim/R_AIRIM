@@ -64,7 +64,7 @@ str(y)
 y
 x
 
-# 신경망 구축
+# 신경망 구축 단순 LSTM
 model<-keras_model_sequential() %>% 
   layer_lstm(units = 128, input_shape = c(maxlen,length(chars))) %>%
   layer_dense(units = length(chars), activation = "softmax")
@@ -86,15 +86,15 @@ sample_next_char <- function(preds, temperature = 1.0) {
   which.max(t(rmultinom(1, 1, preds)))
 }
 
-##
-for (epoch in 1:10) {
+#문장생성 FOR문
+for (epoch in 1:10) { #에폭값 설정
   
   cat("epoch", epoch, "\n")
   
-  # Fit the model for 1 epoch on the available training data
+  # 모델 적합시키기
   model %>% fit(x, y, batch_size = 128, epochs = 1) 
   
-  # Select a text seed at random
+  # 니체 문장 중 무작위 문장 선택
   start_index <- sample(1:(nchar(text) - maxlen - 1), 1)  
   seed_text <- str_sub(text, start_index, start_index + maxlen - 1)
   
@@ -107,8 +107,8 @@ for (epoch in 1:10) {
     
     generated_text <- seed_text
     
-    # We generate 400 characters
-    for (i in 1:200) {
+    # 원하는 문자 수 설정
+    for (i in 1:400) {
       
       sampled <- array(0, dim = c(1, maxlen, length(chars)))
       generated_chars <- strsplit(generated_text, "")[[1]]
