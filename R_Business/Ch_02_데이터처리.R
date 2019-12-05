@@ -117,6 +117,7 @@ library(DataCombine)
 #정규 표현식을 활용하여 하나의 패턴을 만들어 내줍니다.
 web_sites<- "(www.[a-z]*.[a-z]*)"
 
+
 #str_subset()는 string중 해당 패턴을 가지고 있는 문자열들을 반환합니다.
 current<-unique(str_subset(kickboard$경로, web_sites))
 current
@@ -124,14 +125,16 @@ current
 #rep()는 첫번째 인자를 두번째 인자만큼 반복
 replace<-rep("web",length(current))
 replace
+#from/to 속성을 같는 데이터프레임 형식으로 만들어 줍니다.
 replacements<-data.frame(from = current,to = replace)
 replacements
-
-#
-kickboard<-FindReplace(data = kickboard, Var = "경로", replacements, from = "from", to = "to",exact = FALSE)
-
+#FindReplace()는 첫번째 파라미터로 객체를 지정해주고, 두번째는 변수명,
+#세번째는 대체할 데이터, 네 다섯번째는 데이터의 from과 to 속성을 지정합니다.
+#마지막 옵션은 논리값을 대체할때 사용합니다.
+kickboard<-FindReplace(data = kickboard, Var = "경로", replacements, 
+                       from = "from", to = "to", exact = FALSE)
 unique(kickboard$경로)
-
+#경로 변수를 범주형으로 변환하여 저장해줍니다.
 kickboard$경로<-as.factor(kickboard$경로)
 
 str(kickboard)
