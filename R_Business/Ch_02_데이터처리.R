@@ -67,14 +67,19 @@ kickboard_wind_mean<-mean(kickboard_wind$풍속.m.s.)
 
 kickboard[8381,7]<-kickboard_wind_mean
 kickboard[8382,7]<-kickboard_wind_mean
+#결측 열 확인 
+str_detect(kickboard,"NA")
 
 #CH2-2 분석 목적에 맞도록 데이터 형태 가공하기
+#factor()는 범주를 변환해 줍니다.
+#0,1,2,4 이라는 범주를 사람이 이해할 수 있는 문자범주 형태로 가공
 kickboard$휴일여부 <-factor(kickboard$휴일여부, levels = c(0,1),
                         labels = c("아니요","네"))
 
 kickboard$근무여부 <-factor(kickboard$근무여부, levels = c(0,1),
                         labels = c("아니요","네"))
 
+#ordered 파라미터는 순서를 고정하게끔 합니다. 
 kickboard$계절 <-factor(kickboard$계절, levels = c(1,2,3,4),
                       labels = c("봄","여름","가을","겨울"),
                       ordered = TRUE)
@@ -88,27 +93,34 @@ str(kickboard)
 #strptime 함수를 활용하여 문자열 형식에서 날짜형식으로 변환 
 #format 설정을 상세하게 해주지 않으면 NA값을 출력합니다.
 #Y를 대문자로 설정하면 4자리 년도, 소문자로 설정하면 2자리 년도 출력
+str(kickboard$날짜)
+
 kickboard$날짜<-strptime(kickboard$날짜, format = "%Y-%m-%d %H:%M")
 
-str(kickboard)
+str(kickboard$날짜)
 
 # 문자열 데이터를 표준형으로 가공하기 
 # 변수 확인  
 unique(kickboard$경로)
+
 kickboard$경로 <- tolower(kickboard$경로) #소문자 변환 
 kickboard$경로 <- str_trim(kickboard$경로) #앞 뒤 공백 제거
-na_loc<-is.na(kickboard$경로) # 경로의 모든 na값을 na_loc에 저장
-kickboard$경로[na_loc] <-"unknown" # 경로의 na값을 unknown 으로 대체
+na_loc<-is.na(kickboard$경로) #경로의 모든 na값을 확인하고 na_loc으로 결과값 저장
+str(na_loc) #na_loc 확인
+kickboard$경로[na_loc] <-"unknown" # 경로로 접근해서 TRUE값을 unknown 으로 대체
 
 #확인
 unique(kickboard$경로)
 
 #속성 간소화 하기 
 library(DataCombine)
+#정규 표현식을 활용하여 하나의 패턴을 만들어 내줍니다.
 web_sites<- "(www.[a-z]*.[a-z]*)"
+
 #str_subset()는 string중 해당 패턴을 가지고 있는 문자열들을 반환합니다.
 current<-unique(str_subset(kickboard$경로, web_sites))
 current
+
 #rep()는 첫번째 인자를 두번째 인자만큼 반복
 replace<-rep("web",length(current))
 replace
@@ -123,3 +135,6 @@ unique(kickboard$경로)
 kickboard$경로<-as.factor(kickboard$경로)
 
 str(kickboard)
+
+#데이터 저장 
+write.csv(kickboard,"clean_kickboard_data.csv",row.names = FALSE)
