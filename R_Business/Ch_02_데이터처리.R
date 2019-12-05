@@ -1,4 +1,5 @@
 #CH_02 데이터 처리하기 
+#주석
 getwd()
 setwd("E:/hello-git-sourcetree/R_GO/R_Business")
 
