@@ -70,7 +70,7 @@ kickboard[8382,7]<-kickboard_wind_mean
 #결측 열 확인 
 str_detect(kickboard,"NA")
 
-#CH2-2 분석 목적에 맞도록 데이터 형태 가공하기
+#분석 목적에 맞도록 데이터 형태 가공하기
 #factor()는 범주를 변환해 줍니다.
 #0,1,2,4 이라는 범주를 사람이 이해할 수 있는 문자범주 형태로 가공
 kickboard$휴일여부 <-factor(kickboard$휴일여부, levels = c(0,1),
