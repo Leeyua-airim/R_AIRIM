@@ -95,3 +95,50 @@ boxplot(sns_marketing$총_마케팅_예산 ~ sns_marketing$타겟시장_인구�
 #plot() 함수를 이용해 두 변수의 숫자형 데이터에 대하여 산점도를 그릴 수 있습니다.
 plot(sns_marketing$유튜브광고_예산, sns_marketing$수익, main = "숫자형 / 숫자형")
 
+#두 변수 사이의 상관관계를 파악하기 
+#유틉그
+cor(sns_marketing$유튜브광고_예산,sns_marketing$수익)
+cor(sns_marketing$유튜브광고_예산,sns_marketing$페이스북광고_예산)
+#유의성 테스트
+cor.test(sns_marketing$유튜브광고_예산,sns_marketing$수익)
+cor.test(sns_marketing$네이버블로그광고_예산,sns_marketing$수익)
+
+#예시)1인당 치즈소비량과 토목공학 박사 수여량의 상관관계
+cheese<-c(9.3,9.7,9.7,9.7,9.9,10.2,10.5,11,10.6,10.6)
+degrees<-c(480,501,540,552,547,622,655,701,712,708)
+cor(cheese,degrees)
+cor.test(cheese,degrees)
+
+cor.test(sns_marketing$유튜브광고_예산,sns_marketing$페이스북광고_예산)
+
+cor.test(sns_marketing$총_마케팅_예산,sns_marketing$수익)
+
+plot(sns_marketing$유튜브광고_예산, sns_marketing$수익)
+plot(sns_marketing$유튜브광고_예산, sns_marketing$페이스북광고_예산)
+plot(sns_marketing$총_마케팅_예산, sns_marketing$수익)
+
+sns_marketing$emp_factor<-NULL
+
+#다수의 변수 동시에 분석해보기
+pairs(sns_marketing)
+
+cor(sns_marketing[,1:6])
+
+#cor()함수의 결과와 p값을 결합해주는 corr.test()함수 제공
+install.packages("psych")
+library(psych)
+
+corr.test(x = sns_marketing[,1:6])
+
+install.packages("corrgram")
+library(corrgram)
+
+corrgram(sns_marketing[,1:6], order = FALSE,
+         main = "Correlogram of SNS_Marketing Data, Unordered",
+         lower.panel = panel.conf, upper.panel = panel.ellipse,
+         diag.panel = panel.minmax, text.panel = panel.txt)
+
+corrgram(sns_marketing[,1:6], order = TRUE,
+         main = "Correlogram of SNS_Marketing Data, Ordered",
+         lower.panel = panel.shade, upper.panel = panel.pie,
+         diag.panel = panel.minmax, text.panel = panel.txt)
