@@ -32,10 +32,13 @@ setwd("E:/hello-git-sourcetree/R_GO/R_Business_Intelligence")
 sns_marketing<-read.csv("Ch3_SNS_marketing.csv",stringsAsFactors = TRUE)
 #str()통해 수치와 분포를 살펴보기기
 str(sns_marketing)
+
 #factor()를 통해 변수를 순서형으로 변환 시키기.
+#ordered 파라미터를 통해 변수 순서 고정시키기 
 sns_marketing$타겟시장_인구밀도<-factor(sns_marketing$타겟시장_인구밀도,
                                        ordered= TRUE,
                                        levels = c("Low","Medium","High"))
+
 
 #표를 활용한 데이터 탐색
 #summary()는 평균을 포함하여 총 6가지의 중요한 수치를 알려줍니다.
