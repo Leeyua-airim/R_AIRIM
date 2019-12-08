@@ -62,22 +62,25 @@ sapply(anscombe,mean)
 sapply(anscombe,sd)
 sapply(anscombe,var)
 
-#plot()를 활
+#데이터 탐색 시각화
 plot(sns_marketing$타겟시장_인구밀도)
 boxplot(sns_marketing$유튜브광고_예산, ylab = "지출_Expenditures")
 hist(sns_marketing$유튜브광고_예산, main = "지출분포")
 
-summary(sns_marketing$페이스북광고_예산)
+#데이터 탐색 시각화_네이버 블로그 광고
+summary(sns_marketing$네이버블로그광고_예산)
 boxplot(sns_marketing$네이버블로그광고_예산, ylab = "지출_Expenditures",col = "gray")
 hist(sns_marketing$네이버블로그광고_예산,main = NULL, col = "skyblue")
 
-#두개의 변수 분석하기 _ 이변량 데이터분석석
+#두개의 변수 분석하기 _ 이변량 데이터분석
 summary(sns_marketing)
+
 #변수 추가하고 제거하기 
 #cut()는 두번째 파라미터로 정한 수 만큼 범주를 분리하여 저장합니다.
 #즉, 종업원 수를 중앙값으로 구분하여 두 범주로 구분하도록 합니다.
 sns_marketing$emp_factor<-cut(sns_marketing$종업원_수,2)
 summary(sns_marketing)
+
 #변수 제거하기 
 sns_marketing$emp_factor<-NULL
 
