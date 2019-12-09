@@ -93,18 +93,21 @@ table(sns_marketing$emp_factor,sns_marketing$타겟시장_인구밀도)
 #mosaicplot()은 두개의 범주형 데이터를 그릴 수 있습니다.
 #단, table()가 포함되어야 합니다.
 mosaicplot(table(sns_marketing$타겟시장_인구밀도,sns_marketing$emp_factor),
-                 col = c("gray","skyblue"),main = "범주형 / 범주형",ylab = "종업원 수",xlab = "인구밀도")
+                 col = c("gray","skyblue"),main = "범주형 / 범주형",
+                 ylab = "종업원 수",xlab = "인구밀도")
 
 #boxplot()함수에 범주형 데이터와 숫자형 데이터를 넣어 활용할 수도 있다.
 boxplot(sns_marketing$총_마케팅_예산 ~ sns_marketing$타겟시장_인구밀도,
         main = "범주형 / 숫자형")
+
 #plot() 함수를 이용해 두 변수의 숫자형 데이터에 대하여 산점도를 그릴 수 있습니다.
 plot(sns_marketing$유튜브광고_예산, sns_marketing$수익, main = "숫자형 / 숫자형")
 
 #두 변수 사이의 상관관계를 파악하기 
-#유틉그
+#유튜브 광고예산과 수익/페이스북 광고예산 간의 상관관계 확인   
 cor(sns_marketing$유튜브광고_예산,sns_marketing$수익)
 cor(sns_marketing$유튜브광고_예산,sns_marketing$페이스북광고_예산)
+
 #유의성 테스트
 cor.test(sns_marketing$유튜브광고_예산,sns_marketing$수익)
 cor.test(sns_marketing$네이버블로그광고_예산,sns_marketing$수익)
@@ -115,27 +118,37 @@ degrees<-c(480,501,540,552,547,622,655,701,712,708)
 cor(cheese,degrees)
 cor.test(cheese,degrees)
 
+#상관관계가 유의하지 않은 케이스 살펴보기기
 cor.test(sns_marketing$유튜브광고_예산,sns_marketing$페이스북광고_예산)
 
+#좁은 신뢰구간 살펴보기기
 cor.test(sns_marketing$총_마케팅_예산,sns_marketing$수익)
 
-plot(sns_marketing$유튜브광고_예산, sns_marketing$수익)
-plot(sns_marketing$유튜브광고_예산, sns_marketing$페이스북광고_예산)
-plot(sns_marketing$총_마케팅_예산, sns_marketing$수익)
+#그래프를 활용한 상관관계
+plot(sns_marketing$유튜브광고_예산, sns_marketing$수익, main = "cor:0.766")
+plot(sns_marketing$유튜브광고_예산, sns_marketing$페이스북광고_예산, main = "cor:0.076")
+plot(sns_marketing$총_마케팅_예산, sns_marketing$수익,main = "cor:0.853")
 
+#불필요 변수 제거
 sns_marketing$emp_factor<-NULL
 
-#다수의 변수 동시에 분석해보기
+#4단계 절차를 통한 데이터 탐색
+#1.데이터 관찰
+str(sns_marketing)
+#2.다수의 변수 동시에 분석
 pairs(sns_marketing)
 
+#3.다수의 상관관계 파악
 cor(sns_marketing[,1:6])
 
+#4.유의성 판단하기 
 #cor()함수의 결과와 p값을 결합해주는 corr.test()함수 제공
 install.packages("psych")
 library(psych)
 
 corr.test(x = sns_marketing[,1:6])
 
+#유의성 판단하기 시각화
 install.packages("corrgram")
 library(corrgram)
 
@@ -148,3 +161,10 @@ corrgram(sns_marketing[,1:6], order = TRUE,
          main = "Correlogram of SNS_Marketing Data, Ordered",
          lower.panel = panel.shade, upper.panel = panel.pie,
          diag.panel = panel.minmax, text.panel = panel.txt)
+
+#panel.conf : 상관계수와 신뢰구간 표시
+#panel.ellipse : 원과 선으로 상관관계 시각화
+#panel.shade : 빗금과 색의 강도로 상관관계 및 계수 시각화
+#Panel.pie : 파이그래프로 상관관계 시각화
+#panel.minmax : 변수값의 최솟값 최댓값 표기 
+#panel.txt : 변수명 표기
