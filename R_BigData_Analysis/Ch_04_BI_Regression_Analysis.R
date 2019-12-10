@@ -69,29 +69,50 @@ market_sample<-sample_frac(adverts,0.3,replace = FALSE)
 #샘플 데이터 모델 생성
 sample_model <- lm(revenues ~ marketing_total, data = market_sample)
 sample_model
-#샘플링의 불확실성을 설명해주기 위한 함수수
+#샘플링의 불확실성을 설명해주기 위한 함수
 confint(sample_model)
 
+#임의의 데이터 생성
+x <- c(1,2,3,4,5,6,7,8,9,10)
+y <- c(1.00,1.41,1.73,2.00,2.24,2.45,2.65,2.83,3.00,3.16)
+fit_xy<-lm(y~x)
+#생성된 데이터에 대한 LINE확인
+par(mfrow = c( 1,3))
+plot(x,y,pch = 19, main = "선형성 확인");abline(fit_xy,col = "red")
+hist(fit_xy$residuals, main = "정규성 확인",col = "skyblue")
+plot(fit_xy$fitted.values, fit_xy$residuals, main = "등분산성 확인", pch = 19);abline( h = 0 )
 
+#종속변수 변환 (y값을 제곱)
+y_2 <- y^2
+fit_xy2<-lm(y_2~x)
+#LINE 전제조건 확인
+plot(x,y_2,pch = 19, main = "선형성 확인");abline(fit_xy2,col = "red")
+hist(fit_xy2$residuals, main = "정규성 확인",col = "skyblue")
+plot(fit_xy2$fitted.values, fit_xy2$residuals, main = "등분산성 확인", pch = 19);abline( h = 0 )
 
+#boxcox()를 통해 종속변수의 데이터 변환 수치값을 찾습니다.
+library(MASS)
+par(mfrow = c(1,1))
+boxcox(fit_xy)
 
+#새로운 가상데이터 생성
+x2<- c(1,5,15,30,60,120,240,480,720,1440,2880,5760,10080)
+y2<- c(0.84,0.71,0.61,0.56,0.54,0.47,0.45,0.38,0.36,0.26,0.2,0.16,0.08)
+#모델 생성 
+fit2<-lm(y2 ~ x2)
+#LINE 전제조건 확인
+par(mfrow = c( 1,3))
+plot(x2,y2,pch = 19, main = "선형성 확인");abline(fit2,col = "red")
+hist(fit2$residuals, main = "정규성 확인",col = "skyblue")
+plot(fit2$fitted.values, fit2$residuals, main = "등분산성 확인", pch = 19);abline( h = 0 )
 
+#독립변수에 log()변환을 하여 다시 모델 재 수립 및 전제조건 확인
+x2_log<-log(x2)
+fit2_log<-lm(y2~x2_log)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+plot(x2_log,y2,pch = 19, main = "선형성 확인");abline(fit2_log,col = "red")
+hist(fit2_log$residuals, main = "정규성 확인",col = "skyblue")
+plot(fit2_log$fitted.values, fit2_log$residuals, main = "등분산성 확인", pch = 19);abline( h = 0 )
 
 
 
