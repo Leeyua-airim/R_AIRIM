@@ -1,18 +1,23 @@
-#R_비즈니스 인텔리전스_
+#R_Big_Data_Analysis
 # 추출 변형 저장 _ ETL 과정
 
+#현재 작업 경로 확인
 getwd()
-setwd("E:/R_Restaurant")
+#내가 원하는 작업경로 설정
+setwd("E:/hello-git-sourcetree/R_GO/R_BigData_Analysis")
+#데이터 읽어들이기 및 객체 저장 
 kickboard<-read.csv("Ch1_kickboard_sharing_data.csv")
+
+#데이터 간단하게 살펴보기
 str(kickboard)
 
 kickboard<-read.table("Ch1_kickboard_sharing_data.txt", sep = "\t",header = TRUE)
 head(kickboard)
 
 library(dplyr)
-#봄과 여름에 한하여 미등록자의 킥보드 대여 횟수 살펴보기
+#봄(1)과 여름(2)에 한하여 미등록자의 킥보드 대여 횟수 살펴보기
 extracted_row<-filter(kickboard, 정기회원 == 0, 계절 == 1 | 계절 == 2)
-dim(extracted_row)
+head(extracted_row)
 
 # %in% 연산자는 모든 행을 조회하고, 그 행이 사용자가 지정한 기준에 부합하는지 결정한다.
 #첫번째 파라미터는 데이터 이름, 두번째 파라미터는 필터링 조건 
@@ -32,7 +37,7 @@ add_revenue
 # 두 함수는 같이 사용되는 경우가 많으니 메모해 두면 좋다.
 #group_by()는 데이터 프레임과 기준으로 만들고 싶은 변수를 파라미터로 취한다.
 grouped <-group_by(add_revenue,계절)
-
+grouped
 #summarise()는 데이터프레임과 사용자가 요약하길 원하는 변수를 파라미터로 여긴다.
 #평균, 최소, 최대, 총합 중 정확하게 선택하여야 합니다.
 report<-summarise(grouped, sum(일일회원), sum(수익),mean(수익))
@@ -45,4 +50,3 @@ write.csv(report,"수익_리포트.csv",row.names = FALSE)
 #write.table()함수도 마찬가지로 데이터프레임을 txt 파일로 저장할 수 있는 기능을 제공합니다. 
 #이때 sep = 파라미터의 '\t'는 텍스트 파일을 저장할 때, 텝(tap)으로 구분하라고 알려주는 겁니다.
 write.table(report,"수익_리포트.txt",row.names = FALSE, sep = "\t")
-
