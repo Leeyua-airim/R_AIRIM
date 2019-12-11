@@ -149,6 +149,18 @@ plot(outlier_model_3)
 
 #다중 선형 회귀 모델 
 mulit_model<-lm(revenues ~ youtube_adwords + facebook + naver_blog, data = adverts)
+#LINE전제조건 확인 및 이상치 탐색
 plot(mulit_model)
-summary(mulit_model)
 
+#cook's distance 이상치 탐색 
+cooks_dist<-cooks.distance(mulit_model)
+plot(cooks_dist)
+#평균보다 4배 이상일때 이상치로 간주
+abline(h = 4*mean(cooks_dist), col = "red")
+
+text(x = 1:length(cooks_dist),y = cooks_dist, 
+     labels = ifelse(cooks_dist > 4*mean(cooks_dist),names(cooks_dist),""),col = "red")
+#ifelse(조건, yes 일때, no일때)
+
+#모델 해석
+summary(mulit_model)
