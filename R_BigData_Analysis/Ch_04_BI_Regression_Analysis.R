@@ -1,6 +1,6 @@
 #CH_04 비즈니스 회귀분석
 getwd()
-setwd("E:/hello-git-sourcetree/R_GO/R_Business_Intelligence")
+setwd("E:/hello-git-sourcetree/R_GO/R_BigData_Analysis")
 options(scipen = 100) #지수표기법 전환
 
 #데이터 읽어들이기 및 데이터 확인
@@ -147,11 +147,8 @@ summary(outlier_model_3);summary(non_outlier_model)
 par(mfrow = c(2,2))
 plot(outlier_model_3)
 
-
-
-
-
-
-
-
+#다중 선형 회귀 모델 
+mulit_model<-lm(revenues ~ youtube_adwords + facebook + naver_blog, data = adverts)
+plot(mulit_model)
+summary(mulit_model)
 
