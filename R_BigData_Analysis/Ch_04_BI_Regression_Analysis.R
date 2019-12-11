@@ -115,18 +115,37 @@ hist(fit2_log$residuals, main = "정규성 확인",col = "skyblue")
 plot(fit2_log$fitted.values, fit2_log$residuals, main = "등분산성 확인", pch = 19);abline( h = 0 )
 
 
+#이상치 데이터 처리하기
+#두 부류의 데이터 셋 생성성 
+x3<- 1:20
+y3<- c(1:10,4,12:20)
+x4<- c(1:20, 30)
+y4<- c(0.4,2.2,2.2,5.6,5.3,5.2,7.5,8.7,9.6,9.7,12.5,12.4,12.4,11.8,16.1,16,17,18.9,19.8,20.6,30.0)
+#각 데이터 셋에 대한 모델 생성성
+outlier_model_1<-lm(y3~x3)
+outlier_model_2<-lm(y4~x4)
+par(mfrow = c(1,2))
+#그래프 생성 및 회귀선 
+plot(x3,y3,main = "이상치가 영향력이 있는 경우");abline(outlier_model_1,col = "red")
+plot(x4,y4, main = "이상치가 영향력이 없는경우");abline(outlier_model_2,col = "red")
 
+#세번째 데이터셋 생성
+x5<- c(1:20)
+y5<- c(0.4,2.2,2.2,5.6,5.3,5.2,7.5,8.7,9.6,9.7,12.5,12.4,12.4,12.8,16.1,16.0,17.0,11.5,19.8,20.6)
+outlier_model_3<-lm(y5~x5)W
+plot(x5,y5,main = "이상치 포함");abline(outlier_model_3, col = "red")
 
+#네번재 데이터셋 생성
+x6<- c(1:19)
+y6<- c(0.4,2.2,2.2,5.6,5.3,5.2,7.5,8.7,9.6,9.7,12.5,12.4,12.4,12.8,16.1,16.0,17.0,19.8,20.6)
+non_outlier_model<-lm(y6~x6)
+plot(x6,y6,main = "이상치 불포함");abline(non_outlier_model,col = "red")
 
-
-
-
-
-
-
-
-
-
+#세번째 모델과 네번째 모델 비교
+summary(outlier_model_3);summary(non_outlier_model)
+#cook's distance를 활용하여 이상치 탐색색
+par(mfrow = c(2,2))
+plot(outlier_model_3)
 
 
 
