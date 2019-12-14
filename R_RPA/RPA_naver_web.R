@@ -31,5 +31,3 @@ keybd.press("enter")
 Sys.sleep(2)
 keybd.press("enter")
 keybd.press("ctrl+v")
-
-
