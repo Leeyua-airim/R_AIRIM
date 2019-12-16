@@ -1,7 +1,8 @@
 ---
-title: "Tutorial"
+title: "R BigData Analysis"
 output: learnr::tutorial
 runtime: shiny_prerendered
+reference_docx: korean-template.docx
 ---
 
 ```{r setup, include=FALSE}
@@ -10,66 +11,39 @@ knitr::opts_chunk$set(echo = FALSE)
 ```
 
 
-## Topic 1
+## 1_데이터 처리하기
 
-### Exercise 
+### ETR 프로세스 파악하기 
 
-*Here's a simple exercise with an empty code chunk provided for entering the answer.*
+*ETR은 추출(Extract), 변형(Transform), 저장(Load) 이라는 세 단계를 의미하며 이는 데이터 분석 뿐만 아니라 다양한 프로젝트의 출발점 입니다.*
 
-Write the R code required to add two plus two:
+Extract 추출 과정 
+
+모든 프로젝트의 시작은 데이터를 불러들이는 것 입니다.read.csv() 를 통해 자신이 원하는 데이터를 가져올 수가 있습니다
+이 외에도 read.table() 를 활용하여 TXT파일을 불러들일 수가 있습니다.
+
+R코딩을 통해 데이터를 불러들이도록 하겠습니다.
+코드 참조(https://github.com/Leeyua-airim/R_AIRIM/tree/master/R_BigData_Analysis)
 
 ```{r two-plus-two, exercise=TRUE}
+#R_Big_Data_Analysis ▶ 추출 변형 저장 _ ETL 과정
 
+#현재 작업 경로 확인
+getwd()
+#내가 원하는 작업경로 설정
+setwd("E:/hello-git-sourcetree/R_GO/R_BigData_Analysis")
+#데이터 읽어들이기 및 객체 저장 
+kickboard<-read.csv("Ch1_kickboard_sharing_data.csv")
+#데이터 간단하게 살펴보기
+str(kickboard)
 ```
 
-### Exercise with Code
+### 위의 코드를 참고하며 ETL프로세스 중 추출(Extract)과정을 진행해 봅시다.
 
-*Here's an exercise with some prepopulated code as well as `exercise.lines = 5` to provide a bit more initial room to work.*
+*start over를 클릭하여 초기화를 시켜줍시다.*
 
-Now write a function that adds any two numbers and then call it:
+```{r add-function, exercise=TRUE, exercise.lines = 7}
 
-```{r add-function, exercise=TRUE, exercise.lines = 5}
-add <- function() {
-  
-}
-```
 
-## Topic 2
-
-### Exercise with Hint
-
-*Here's an exercise where the chunk is pre-evaulated via the `exercise.eval` option (so the user can see the default output we'd like them to customize). We also add a "hint" to the correct solution via the chunk immediate below labeled `print-limit-hint`.*
-
-Modify the following code to limit the number of rows printed to 5:
-
-```{r print-limit, exercise=TRUE, exercise.eval=TRUE}
-mtcars
-```
-
-```{r print-limit-hint}
-head(mtcars)
-```
-
-### Quiz
-
-*You can include any number of single or multiple choice questions as a quiz. Use the `question` function to define a question and the `quiz` function for grouping multiple questions together.*
-
-Some questions to verify that you understand the purposes of various base and recommended R packages:
-
-```{r quiz}
-quiz(
-  question("Which package contains functions for installing other R packages?",
-    answer("base"),
-    answer("tools"),
-    answer("utils", correct = TRUE),
-    answer("codetools")
-  ),
-  question("Which of the R packages listed below are used to create plots?",
-    answer("lattice", correct = TRUE),
-    answer("tools"),
-    answer("stats"),
-    answer("grid", correct = TRUE)
-  )
-)
 ```
 
