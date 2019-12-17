@@ -123,25 +123,25 @@ $(document).ready(function () {
 <p><em>ETR은 추출(Extract), 변형(Transform), 저장(Load) 이라는 세 단계를 의미하며 이는 데이터 분석 뿐만 아니라 다양한 프로젝트의 출발점 입니다.</em></p>
 <p>Extract 추출 과정</p>
 <p>모든 프로젝트의 시작은 데이터를 불러들이는 것 입니다.read.csv() 를 통해 자신이 원하는 데이터를 가져올 수가 있습니다 이 외에도 read.table() 를 활용하여 TXT파일을 불러들일 수가 있습니다.</p>
-<p>R코딩을 통해 데이터를 불러들이도록 하겠습니다. 코드 참조(<a href="https://github.com/Leeyua-airim/R_AIRIM/tree/master/R_BigData_Analysis" class="uri">https://github.com/Leeyua-airim/R_AIRIM/tree/master/R_BigData_Analysis</a>)</p>
-<div class="tutorial-exercise" data-label="two-plus-two" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
+<p>R코딩을 통해 데이터를 불러들이고, 간략하게 살펴보겠습니다. 코드 참조(<a href="https://github.com/Leeyua-airim/R_AIRIM/tree/master/R_BigData_Analysis" class="uri">https://github.com/Leeyua-airim/R_AIRIM/tree/master/R_BigData_Analysis</a>)</p>
+<div class="tutorial-exercise" data-label="two-plus-two" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="10">
 <pre class="text"><code>#R_Big_Data_Analysis ▶ 추출 변형 저장 _ ETL 과정
 
-#현재 작업 경로 확인
-getwd()
-#내가 원하는 작업경로 설정
-setwd(&quot;E:/hello-git-sourcetree/R_GO/R_BigData_Analysis&quot;)
+#현재 작업 경로 확인 및 설정
+# getwd() , setwd(&quot;/작업 경로&quot;)
+
 #데이터 읽어들이기 및 객체 저장 
-kickboard&lt;-read.csv(&quot;Ch1_kickboard_sharing_data.csv&quot;)
+# kickboard&lt;-read.csv(&quot;Ch1_kickboard_sharing_data.csv&quot;)
+data(&quot;iris&quot;)
 #데이터 간단하게 살펴보기
-str(kickboard)</code></pre>
+str(iris)</code></pre>
 <script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
 </div>
 </div>
-<div id="section-etl--extract--." class="section level3">
-<h3>위의 코드를 참고하며 ETL프로세스 중 추출(Extract)과정을 진행해 봅시다.</h3>
-<p><em>start over를 클릭하여 초기화를 시켜줍시다.</em></p>
-<div class="tutorial-exercise" data-label="add-function" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="7">
+<div id="section-section-1" class="section level3">
+<h3>위의 코드를 참고하며 데이터를 살펴보도록 하겠습니다.</h3>
+<p><em>str()는 데이터가 어떻게 구성되어 있는지 파악하기 쉽습니다.</em></p>
+<div class="tutorial-exercise" data-label="add-function" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="5">
 <script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
 </div>
 

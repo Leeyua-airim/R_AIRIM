@@ -22,27 +22,27 @@ Extract 추출 과정
 모든 프로젝트의 시작은 데이터를 불러들이는 것 입니다.read.csv() 를 통해 자신이 원하는 데이터를 가져올 수가 있습니다
 이 외에도 read.table() 를 활용하여 TXT파일을 불러들일 수가 있습니다.
 
-R코딩을 통해 데이터를 불러들이도록 하겠습니다.
+R코딩을 통해 데이터를 불러들이고, 간략하게 살펴보겠습니다.
 코드 참조(https://github.com/Leeyua-airim/R_AIRIM/tree/master/R_BigData_Analysis)
 
-```{r two-plus-two, exercise=TRUE}
+```{r two-plus-two, exercise=TRUE,exercise.lines = 10}
 #R_Big_Data_Analysis ▶ 추출 변형 저장 _ ETL 과정
 
-#현재 작업 경로 확인
-getwd()
-#내가 원하는 작업경로 설정
-setwd("E:/hello-git-sourcetree/R_GO/R_BigData_Analysis")
+#현재 작업 경로 확인 및 설정
+# getwd() , setwd("/작업 경로")
+
 #데이터 읽어들이기 및 객체 저장 
-kickboard<-read.csv("Ch1_kickboard_sharing_data.csv")
+# kickboard<-read.csv("Ch1_kickboard_sharing_data.csv")
+data("iris")
 #데이터 간단하게 살펴보기
-str(kickboard)
+str(iris)
 ```
 
-### 위의 코드를 참고하며 ETL프로세스 중 추출(Extract)과정을 진행해 봅시다.
+### 위의 코드를 참고하며 데이터를 살펴보도록 하겠습니다.
 
-*start over를 클릭하여 초기화를 시켜줍시다.*
+*hint:str()는 데이터가 어떻게 구성되어 있는지 파악하기 쉽습니다.*
 
-```{r add-function, exercise=TRUE, exercise.lines = 7}
+```{r add-function, exercise=TRUE, exercise.lines = 5}
 
 
 ```
