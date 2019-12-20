@@ -121,3 +121,76 @@ list_type = []
 list_type = ['1,2,3,4']
 list_type = ['one',2,'three',4]
 print(list_type)
+
+#리스트 인덱스
+data = ['hello','python','RPA','R']
+print(data[0])
+print(data[2])
+print(data[-1])
+print(data[-3])
+#del()를 통해 리스트의 요소를 지울 수도 있다.
+del(data[3])
+print(data)
+
+#append() 리스트 맨 마지막에 값을 추가해주는 함수 입니다.
+data = []
+data.append('hello python')
+print(data)
+data.append('R')
+print(data)
+data.append(['RPA'])
+print(data)
+
+#sort() 문자열 혹은 숫자형 데이터를 정렬하여 반환합니다.
+data = ['aad','aac','aaa']
+data.sort()
+print(data)
+
+#insert() 리스트 내 원하는 위치에 값을 추가할 수 있는 함수.
+data = ['hello','RPA','Python']
+data.insert(3,'R')
+print(data)
+data.insert(255,'JAVA')
+print(data)
+
+#remove() 리스트 내 원하는 값을 지정하여 삭제할 수 있습니다.
+data = ['R','RPA','PYTHON','JAVA']
+data.remove('JAVA')
+print(data)
+
+#튜플 자료형 : 데이터의 모음을 나타내는 자료형
+#튜플 자료형은 리스트와 달리 삭제할 수가 없다.
+data = (1,2,3)
+print(data)
+data = (1,)
+print(data)
+data = (1)
+print(data)
+
+#튜플형을 수정하고 싶을때는 리스트형으로 전환하여야 한다.
+data = (1,2,3)
+l_data=list(data)
+l_data[0] = 10
+del(l_data[2])
+print(l_data)
+t_data=tuple(l_data)
+print(t_data)
+
+#딕셔너리 자료형 : 키(key)와 값(value)형태로 구성되어 있습니다.
+#딕셔너리 자료형은 키를 통해 접근할 수가 있습니다.
+student = {'name':'airim','age':27,'e-mail':'abcd@gmail.com'}
+print(student['name'])
+
+sample={}
+sample['name'] = 'airim'
+sample['age'] = 27
+print(sample)
+
+#keys()는 딕셔너리가 가진 모든 키를 dict_keys객체로 반환합니다.
+student = {'name':'airim','age':27,'e-mail':'abcd@gmail.com'}
+student_keys=student.keys()
+print(student_keys)
+
+#values()는 딕셔너리가 가진 모든 값을 dict_values객체로 반환합니다.
+student_values=student.values()
+print(student_values)
