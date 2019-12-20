@@ -115,4 +115,9 @@ print(res)
 view = 1000
 res = 'My youtube_ch is "%s" and %d Sub'%(name,view)
 print(res)
-ds
+
+#리스트 자료형 : 리스트 자료형은 꼭 같은 자료형이 아니어도 됩니다.
+list_type = []
+list_type = ['1,2,3,4']
+list_type = ['one',2,'three',4]
+print(list_type)
