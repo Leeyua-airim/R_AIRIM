@@ -195,4 +195,130 @@ print(student_keys)
 student_values=student.values()
 print(student_values)
 
-#
+#items() 는 딕셔너리에 있는 키 값을 튜플 형태로 반환합니다.
+students={'name':'leeyua','age':27,'e-mail':'abcd@naver.com'}
+items=students.items()
+print(items)
+
+#get(키, 기본값)는 키값이 없을 경우 기본값을 반환합니다.
+students = {'name':'leeyua','age':27}
+name_data=students.get('name','no data')
+print(name_data)
+
+weight_data = students.get('weight','no data')
+print(weight_data)
+
+#if elif else 문 살펴보기
+num = 10
+if num < 10:
+    print("less than 10")
+elif num > 10:
+    print("more than 10")
+else:
+    print("num is 10")
+#다중 if 문은 이전 조건에 상관없이 전부 실행됩니다.
+if num < 10 :
+    print("less than 10")
+if num < 15 :
+    print("less than 15")
+if num < 5 :
+    print("less than 5")
+
+# 0, 빈 리스트,빈 튜플, 빈 딕셔너리는 조건문에서 거짓이다.
+data = 0
+if data:
+    print(data)
+else:
+    print("no data is available")
+
+# 비어있지 않은 데이터는 조건문에서 참값이다.
+data = ['student','teacher']
+if data:
+    print(data)
+else:
+    print("no data is available")
+
+#제어문 if else활용하기
+user = {'name':'yua','age':1,'email':'abcd@gmail.com'}
+if 'email' in user:
+    if '@' not in user['email']:
+        print('Wrong email')
+    else:
+        print('Email: ' + user['email'])
+else:
+    print('no email')
+
+teenager =[]
+if 'age' in user:
+    if user['age'] < 20:
+        if user['name'] not in teenager:
+            print('name : ' + user['name'])
+            teenager.append(user['name'])
+    else:
+        print('Not teenager')
+else:
+    print("no age")
+
+#부정연산자 not은 기존 조건을 반대로 만듭니다.
+if not teenager:
+    print("no teenager")
+else:
+    print(teenager)
+
+#반복문은 for 객체 in 튜플,리스트:
+for count in {1,2,3,4,5}:
+    print(count)
+
+
+for email in ['abc@gamil.com','abc@naver.com']:
+    print(email)
+
+#일정횟수만큼 반복을 하고 싶다면 range()를 사용
+num = 0
+for c in range(10):
+    print(c)
+
+student = {'name':'lee','email':'abc@naver.com'}
+
+for k in student.keys():
+    print(k +":"+student[k])
+
+#while()은 종료 조건이 없는한 계속 반복되는 구문입니다.
+'''
+user_input = ''
+while user_input != 'quit':
+    user_input = input('Input: ')
+    print(user_input)
+'''
+
+'''
+user_input = ''
+while user_input != 'quit':
+    user_input = input('Input: ')
+    print(user_input)
+
+    if user_input == 'exit':
+        break
+'''
+
+#continue()는 조건이 거짓이더라도 건너뛰고 다음 코드를 실행
+emails = ['abc@naver.com','abc@gmail.com','abc#kakao.com','abc@daum.com']
+for email in emails:
+    if '@' not in email:
+        continue
+    print(email)
+
+#def()는 함수를 구축하기위한 약속 입니다.
+def print_hello():
+    print('hello python')
+    print('It\'s me') #이스케이프 코드
+
+print_hello()
+
+# return은 결과값을 출력하는게 아닌 반환시켜 주는 역할을 합니다.
+def my_sum(a,b):
+    res = a + b
+    return res
+
+res = my_sum(4,7)
+print(res)
