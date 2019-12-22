@@ -322,3 +322,45 @@ def my_sum(a,b):
 
 res = my_sum(4,7)
 print(res)
+
+
+#내장함수 str()은 문자열 자료형으로 변환시켜주는 함수
+a = ['freelec','alghost']
+a = str(a)
+print(a)
+print(a[0:4])
+
+#내장함수 min max 에서는 문자지만 숫자인 경우를 가장 작은 값으로 인식합니다.
+a = ['bbb','1','aaa']
+print(max(a))
+print(min(a))
+
+#클래스는 기능 단위로 나눠 작성한 코드블록
+'''
+class Email:
+    sender = ""
+
+    def send_mail(self,recv,subject,contents):
+        print("From: \t" + self.sender)
+        print("To:\t" + recv)
+        print("Subject: \t" + subject)
+        print("Contents")
+        print(contents)
+        print("-"*20)
+
+e = Email()
+e.sender = 'airim@gmail.com'
+recv_list=['1@gmail.com','2@gmail.com','3@gmail.com']
+
+for recv in recv_list:
+    e.send_mail(recv,"Welcome", "This is contents")
+'''
+#클래스 활용하기 from 파일명 import 클래스명,클래스명
+from Python_RPA_05 import email
+
+e = email()
+e.sender = "brink0@naver.com"
+recv_list = ['airim@gmail.com','airim2@gmail.com']
+
+for recv in recv_list:
+    e.send_mail(recv,"Welcome to RPA","This is contents")
