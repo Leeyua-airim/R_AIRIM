@@ -1,0 +1,140 @@
+---
+title: "iRichGreen WePlay"
+output:
+  learnr::tutorial:
+    progressive: true
+    allow_skip: true
+runtime: shiny_prerendered
+---
+  
+```{r setup, include=FALSE}
+library(learnr)
+tutorial_options(exercise.timelimit = 120)
+knitr::opts_chunk$set(error = TRUE)
+
+```
+
+## 데이터의 세계에 오신것을 환영합니다.
+
+##### R이라는 강력한 도구를 통해서 데이터를 천천히 살펴보고 관찰하며 나아가고자 합니다.
+##### 그 속에서 우리가 놓치고 있었던 의미를 발굴했을 때, 그 성취감은 여러분의 것입니다.
+##### 코드는 [여기서](https://github.com/Leeyua-airim/R_AIRIM/blob/master/R_BigData_Analysis/Ch_01_ETR.R) 공유하고 있습니다.
+
+### 학습방법
+
+Weplay는 여러분과 함께 고민하며 앞으로 나아가기 위한 방법을 찾고자 합니다.:
+  
+* 여러분의 PC에 [R](https://cran.r-project.org/bin/windows/base/)을 다운 받아주신다면 더 나은 환경에서 학습을 진행하실 수 있습니다.
+* R은 [RStudio](https://rstudio.com/products/rstudio/download/)라는 IDE이 존재합니다. R과 함께 다운받아 주시기를 권해드립니다.
+* iRichGreen의 [페이스북](https://www.facebook.com/irichgreen/)과 [유튜브](https://www.youtube.com/channel/UCXTMq1u_5FwFeJd2MTP-J4w)는 언제나 여러분을 기다리고 있습니다.
+
+이제 모든 준비는 마쳤습니다. 그럼 가볍게 몸부터 풀어보겠습니다.
+
+### 여행에 있어 준비는 언제나 중요하죠.
+
+빠진것이 있는지 다시한번 확인해 볼까요?
+
+
+```{r quiz1, echo = FALSE}
+question("R을 활용한 데이터 관찰에 필요없는 것은 무엇일까요?",
+  answer("R을 내 PC에 설치합니다.", message = "* R은 꼭 설치해주셔야 합니다."),
+  answer("RStudio를 내 PC에 설치합니다.", message = "* RStudio도 함께 설치해 주세요ㅠㅠ"),
+  answer("내일도 iRichgreen Weplay와 함께 학습계획을 실천합니다.", message = "* 운동과 공부는 매일 조금씩 꾸준히 하는 것이 제일 좋습니다!"),
+  answer("Python을 설치하고 Jupyter notebook을 실행시킵니다.", correct = TRUE, message = "Python강의는 준비중에 있습니다! 조금만 기다려 주세요 :)"),
+  type = "multiple",
+  incorrect = "조금만 힘내서 우리 다음 챕터에서 만나요!",
+  allow_retry = TRUE
+)
+```
+
+## WePlay iRichGreen
+
+### 영상을 통해 간단하지만 강력한 5가지 R코드를 살펴봅시다.
+
+![](https://youtu.be/GLsmCzi3LwU)
+
+### 기억하기! 영상을 통해 살펴본 5가지 핵심 함수 
+
+```{r quiz2, echo=FALSE}
+quiz(caption = "Quiz - R과 함께 매출 상승 원인 찾기",
+  question("분석하기 전! 파일을 읽어오기 위한 작업경로 설정 함수는 무엇일까요?",
+    answer("`getwd()`",message = "이 함수는 현재 설정된 작업경로를 알려줍니다 :) "),
+    answer("`setwd()`",correct = TRUE,message = "정답입니다! `setwd()`를 통해 작업경로를 설정해 줍시다. 잠깐! 경로 사이에 '/' 를 넣어주셔야 합니다!"),
+    allow_retry = TRUE
+  ),
+  question("이제 데이터를 불러와야 합니다. csv파일을 불러오고 싶은데 어떠한 함수를 사용해야 할까요?",
+    answer("`read.csv()`",correct = TRUE,message = "정답입니다! `read.csv()`를 활용해 우리가 원하는 함수를 불러와 봅시다!"),
+    answer("`read.txt()`", message = "메모장 파일을 열고싶을때 사용되는 함수입니다 :)"),
+    answer("`summary()`", message = "오, 벌써 이 함수를 알고계신건가요? 이 함수는 다음 문제에서 좀 더 자세하게 살펴보겠습니다!"),
+    allow_retry = TRUE
+  ),
+  question("불러온 데이터를 간단하게 살펴볼 수 있는 함수는 어떤 것이 있을까요?",
+    answer("`head()`", correct = TRUE),
+    answer("`tail()`", correct = TRUE),
+    answer("`summary()`", correct = TRUE, message = "정답입니다! `head()`, `tail()`, `summary()`는 우리가 보고싶은 데이터의 주요 속성과 데이터 그리고 평균, 최대값, 최소값, 중앙값 등 6가지 주요지표를 보여줍니다!" ),
+    incorrect = "WePlay에서는 다양한 생각과 관점을 추구합니다! 정답이 항상 하나라는 고정관념은 이제 안녕!",
+    allow_retry = TRUE
+  )
+)
+```
+
+## WePlay RStudio
+
+### 우리가 직접 코드를 작성해 나가며 데이터를 관찰해 봅시다. 
+
+※에러가 출력됬다고 너무 겁먹으실 필요 없습니다:)
+비온뒤에 땅이 굳는다는 것을 항상 기억해 주세요.
+
+
+### 오늘 배웠던 강의를 다시 떠올려 봅시다!
+
+공부는 곧 체력입니다! 저와 함께 공부하시는 것도 좋지만 항상 건강관리에 유의해 주세요!    
+
+1. R에서 기본적으로 제공되는 데이터를 불러오도록 하겠습니다.  (`iris` or `cars`)
+
+    ```{r filterex1, exercise = TRUE}
+    
+    ```
+    ```{r filterex1-solution}
+    
+    ```
+    
+    <div id="filterex1-hint">
+    **참고 :** R의 기본 데이터를 가져오기 위해서는 `data()` 가 필요합니다.
+    </div>
+
+
+2. 데이터를 관찰하기 위해서는 다양한 함수가 사용됩니다! 원하는 함수를 통해 다양하게 데이터를 살펴보겠습니다.
+
+    ```{r filterex2, exercise = TRUE}
+    
+    ```
+    ```{r filterex2-solution}
+    
+    ```
+    
+    <div id="filterex2-hint">
+    **참고 :** `summary()`, `head()`, `tail()`, `str()` 등 다양한 함수를 사용해 보세요 :)
+    </div>
+
+
+3. 데이터를 관찰하다 보면 데이터간에 어떠한 관계가 있을지 궁금할때가 있습니다! `pairs()` 를 통해 데이터 어떠한 관계가 있을지 살펴봅시다. 
+
+    ```{r filterex3, exercise = TRUE}
+    
+    ```
+    ```{r filterex3-solution}
+    pairs(cars)
+    
+    ```
+
+## WePlay Next Again
+
+#### 오늘 수업은 여기서 끝났습니다. 모두 고생하셨어요 :) 
+#### 오늘의 배움은 내일을 여는 열쇠가 될 것입니다.
+
+```{r fig1, echo = FALSE, out.width = "50%", fig.align='center',fig.cap = "우리는 새로운 도약을 꿈꾸는 모든이들을 위해 `자유로운 지식의 공유`,`함께하는 성장`을 실천하고 있습니다."}
+knitr::include_graphics("images/irichgreen.png")
+```
+
+#### [iRichGreen WePlay](http://www.irichgreen.com/)

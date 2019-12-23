@@ -3,8 +3,8 @@ from os.path import isdir
 from shutil import copyfile
 
 #경로 설정
-orig_dir = "E:\\python\\scandata\\" #원본 데이터 경로
-out_dir = "E:\\python\\organized\\"
+orig_dir = "E:\\hello-git-sourcetree\\R_GO\\Python_RPA\\data\\scandata\\" #원본 데이터 경로
+out_dir = "E:\\hello-git-sourcetree\\R_GO\\Python_RPA\\data\\organized\\"
 
 #orig_dir에 있는 파일 리스트를 file_list에 옮깁니다.
 file_list = listdir(orig_dir)
