@@ -46,6 +46,7 @@ question("R을 활용한 데이터 관찰에 필요없는 것은 무엇일까요
   incorrect = "조금만 힘내서 우리 다음 챕터에서 만나요!",
   allow_retry = TRUE
 )
+
 ```
 
 ## WePlay iRichGreen

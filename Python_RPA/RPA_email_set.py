@@ -6,7 +6,7 @@ from smtplib import SMTP_SSL
 SMTP_SERVER = 'smtp.naver.com'
 SMTP_PORT = 465
 SMTP_USER = 'brink0'
-SMTP_PASSWORD = '*'
+SMTP_PASSWORD = '!leeyua1057'
 
 def send_mail(name,addr,contents,attachment=False):
     msg = MIMEMultipart("alternative")    #클래스 함수 설정 및 alternative인자값
