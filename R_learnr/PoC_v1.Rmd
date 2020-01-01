@@ -1,0 +1,110 @@
+---
+title: "PoC_V2"
+author: "airim"
+date: '2019 12 30 '
+runtime: shiny
+output: 
+  html_document: 
+    code_folding: "hide"
+    df_print: kable
+    highlight: kate
+    theme: sandstone
+    toc: yes
+    toc_float: yes
+---
+
+```{r setup, include=FALSE} 
+library(knitr)
+library(shiny)
+knitr::opts_chunk$set(echo = FALSE)
+```
+```{r }
+x <- list(1,2,3,4)
+y<-list(10,2,4,20)
+plot(x,y)
+
+```
+```{r echo = FALSE}
+sliderInput(inputId = "bins",label = "number of bins",
+            min = 1,
+            max = 50,
+            value = 30)
+
+renderPlot({
+  x<- faithful[,2]
+  bins<- seq(min(x),max(x),length.out = input$bins+1)
+  hist(x, breaks = bins,col = "darkgray",border = 'white')
+})
+
+```
+
+## 목차의 텝셋 {.tabset}
+
+### 목차 포함 여부 {#toc_control}
+-목차를 넣을땐 `toc:true`를 넣는다.
+-목차의 깊이는 `toc_depth`를 사용.
+
+#### 목차 포함 여부 {#toc_control}
+```{r page}
+data("iris")
+summary(iris)
+```
+
+
+
+### 목차의 배치 {#toc_layout1}
+-`toc_float : true`라는 옵션을 사용하여 목차를 왼쪽에 배치할 수 있다.
+
+
+
+## R 테스트
+안녕하세요 POC 버전 R 입니다.
+이 `x<-1`은 코드입니다.
+```{r cache=TRUE}
+k<-0
+if (k > 0){
+  print("x는 0보다 작다")
+}else{
+  print("x는 0보다 작지 않다.")
+}
+```
+
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+```{r tidy=FALSE}
+if(FALSE){
+  x=1;print('x=1')
+}else{
+  x=2;print('hello world')
+}
+
+```
+
+```{r}
+df<-data.frame(x = sample(c("tx","cl"),5,T),y = rnorm(5),z = rexp(5))
+df
+kable(df,digits=2)
+```
+>이것은 하나의 블록인용
+> 
+>1.이것은 리스트트
+
+
+When you click the **Knit** button a document will be generated that includes both content as well as \
+the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r cars}
+summary(cars)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
