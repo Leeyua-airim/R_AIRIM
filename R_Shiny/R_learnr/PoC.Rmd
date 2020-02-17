@@ -1,5 +1,5 @@
 ---
-title: "iRichGreen WePlay"
+title: "PLAYER MAKER"
 output:
   learnr::tutorial:
     progressive: true
@@ -14,7 +14,7 @@ knitr::opts_chunk$set(error = TRUE)
 
 ```
 
-## 데이터의 세계에 오신것을 환영합니다.
+## WELCOME TO NEXT PROMOTION
 
 ##### R이라는 강력한 도구를 통해서 데이터를 천천히 살펴보고 관찰하며 나아가고자 합니다.
 ##### 그 속에서 우리가 놓치고 있었던 의미를 발굴했을 때, 그 성취감은 여러분의 것입니다.

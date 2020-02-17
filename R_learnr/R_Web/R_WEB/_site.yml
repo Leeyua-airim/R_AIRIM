@@ -1,0 +1,20 @@
+name: "iRichGreen WEPLAY"
+navbar : 
+  title: iRichGreen WEPLAY #타이틀
+  type: inverse #색깔 
+  left:
+    - text: "환영"
+      icon : fa-home
+      href: "index.html"
+    - text: "소개"
+      icon: fa-info
+      href: 'about.html'
+    - text: 'R이란?'
+      href: 'Rintro.html'
+      icon: fa-gear
+      menu:
+        - text: 'heading 1'
+        - text: 'Page A'
+  right:
+    - icon: fa-question fa-lg
+      href: https://example.com
