@@ -2,15 +2,23 @@ getwd()                   #작업경로 확인
 setwd("E:/AI_Edu/R_data") #작업 경로 설정
 
 wbcd <- read.csv("wisc_bc_data.csv", stringsAsFactors = FALSE) #데이터 불러오기
+
 str(wbcd)
+summary(wbcd)
 
 wbcd <- wbcd[-1] #첫번째 열, ID변수 삭제
+
 table(wbcd$diagnosis) #두번째 변수값 확인  
 
-#머신러닝 분류기는 타켓 변수가 팩터 타입으로 코딩되야 합니다.
-wbcd$diagnosis<- factor(wbcd$diagnosis, levels = c("B","M"),
+#머신러닝 분류기는 종속 변수가 factor 타입으로 코딩되야 합니다. #Benignd양성  Malignant악성 
+wbcd$diagnosis<- factor(wbcd$diagnosis, 
+                        levels = c("B","M"),
                         labels = c("Benign","Malignant")) 
-str(wbcd) #확인
+
+
+str(wbcd$diagnosis) #확인
+
+
 #양성과 악성의 비율을 확인하기 위해 prop.table() 활용
 round(prop.table(table(wbcd$diagnosis)) * 100, digits = 2) 
 
@@ -97,26 +105,56 @@ knn(wbcd_train, new.data, wbcd_train_labels, k = 10)
 #연습 데이터
 autoparts<-read.csv("C:/Users/leeyua/PLAYER_MAKER/R_learnr/공정기록데이터.csv",header = TRUE)
 
+summary(autoparts)
+
 autoparts1 <- autoparts[autoparts$prod_no == "90784-76001", c(2:11)]
+
+summary(autoparts1)
+
+summary(autoparts1$c_thickness)
+
+boxplot(autoparts1$c_thickness)
 
 autoparts2 <- autoparts1[autoparts1$c_thickness < 1000, ]
 
-autoparts2$y_faulty <- ifelse((autoparts2$c_thickness< 20)| (autoparts2$c_thickness > 32),1,0)
+summary(autoparts2$c_thickness)
 
-t_index <- sample(1:nrow(autoparts2),size = nrow(autoparts2)*0.7)
+head(autoparts2$c_thickness)
+
+ifelse()
+
+autoparts2$y_faulty <- ifelse(test = (autoparts2$c_thickness < 20) | (autoparts2$c_thickness > 32),
+                              yes = 1,
+                              no  = 0)
+
+head(autoparts2)
+
+
+
+t_index <- sample(1:nrow(autoparts2),
+                  size = nrow(autoparts2)*0.7)
 
 train <- autoparts2[t_index, ]
 test <- autoparts2[-t_index, ]
 
+#학습데이터 알아보기 쉽게 저장
+#학습데이터_독립변수
 xmat.train <- as.matrix(train[1:9])
-str(xmat.train)
+head(xmat.train)
 
+#학습데이터_종속변수
 y_faulty.train <- train$y_faulty
+y_faulty.train <- as.factor(y_faulty.train)
 
+#테스트 데이터_독립변수
 xmat.test<-as.matrix(test[1:9])
 head(xmat.test)
 
-tune.out<-tune.knn(x = xmat.train, y = as.factor(y_faulty.train), k=1:10)
+
+
+tune.out<-tune.knn(x = xmat.train, 
+                   y = y_faulty.train, k=1:10)
+
 
 plot(tune.out)
 

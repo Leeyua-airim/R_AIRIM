@@ -1,0 +1,2 @@
+radius_mean,texture_mean,perimeter_mean,area_mean,smoothness_mean,compactness_mean,concavity_mean,points_mean,symmetry_mean,dimension_mean,radius_se,texture_se,perimeter_se,area_se,smoothness_se,compactness_se,concavity_se,points_se,symmetry_se,dimension_se,radius_worst,texture_worst,perimeter_worst,area_worst,smoothness_worst,compactness_worst,concavity_worst,points_worst,symmetry_worst,dimension_worst
+0.253,0.09,0.242,0.136,0.453,0.155,0.09,0.184,0.454,0.202,0.045,0.06,0.04,0.01,0.215,0.07,0.04,0.235,0.16,0.046,0.198,0.096,0.182,0.089,0.445,0.096,0.099,0.923,0.249,0.083
