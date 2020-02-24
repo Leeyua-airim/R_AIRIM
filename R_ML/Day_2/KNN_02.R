@@ -92,6 +92,7 @@ wbcd_test_pred_n <- knn(train = wbcd_train,
                         test = wbcd_test,
                         cl = wbcd_train_labels,
                         k = k)
+
 CrossTable(x = wbcd_test_labels, y = wbcd_test_pred_n, prop.chisq = FALSE)
 
 #새로운 데이터에 대한 판단
@@ -155,12 +156,12 @@ head(xmat.test)
 tune.out<-tune.knn(x = xmat.train, 
                    y = y_faulty.train, k=1:10)
 
-
+tune.out
 plot(tune.out)
 
 str(xmat.train)
 str(as.factor(y_faulty.train))
 
 
-test_out<-tune.knn(x= wbcd_train,y= wbcd_train_labels, k=1:10)
+test_out<-knn(x= wbcd_train,y= wbcd_train_labels, k=)
 plot(test_out)
